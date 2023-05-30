@@ -8,6 +8,14 @@ app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
+app.get("/login", function (req, res) {
+  res.send("login working");
+});
+
+app.get("/signup", function (req, res) {
+  res.send("signup working");
+});
+
 app.listen(3000, () => {
   console.log("welcome....");
 });
