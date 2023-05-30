@@ -1,0 +1,11 @@
+{
+  "name": "notebook",
+  "version": "1.0.0",
+  "description": "notebook app using react js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vignesh",
+  "license": "ISC"
+}
