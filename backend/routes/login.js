@@ -20,7 +20,9 @@ router.post(
       name: req.body.name,
       password: req.body.password,
       email: req.body.email,
-    }).then((user) => res.json(user));
+    })
+      .then((user) => res.json(user))
+      .catch((err) => res.json({ error: "Email ID already exist." }));
   }
 );
 module.exports = router;
