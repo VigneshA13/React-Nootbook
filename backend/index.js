@@ -2,6 +2,7 @@ const connectToMongo = require("./db");
 const express = require("express");
 
 const app = express();
+
 connectToMongo();
 
 // the below line return the value in console in json formate
