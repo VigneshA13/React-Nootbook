@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-mongoURI = "mongodb://0.0.0.0:27017/test";
+let mongoURI = "mongodb://0.0.0.0:27017/test";
 
-const connectToMongo = () => {
-  mongoose.connect(mongoURI);
+const connectToMongo = async () => {
+  await mongoose.connect(mongoURI);
   console.log("connected.......");
 };
 

@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-router.get("/", (req, res) => {
-  obj = {
+
+router.post("/", (req, res) => {
+  let obj = {
     name: "Vignesh",
   };
   res.json(obj);

@@ -2,6 +2,7 @@ const connectToMongo = require("./db");
 const express = require("express");
 
 const app = express();
+
 connectToMongo();
 
 // the below line return the value in console in json formate
@@ -15,6 +16,6 @@ app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
-app.listen(3000, () => {
+app.listen(5000, () => {
   console.log("welcome....");
 });
