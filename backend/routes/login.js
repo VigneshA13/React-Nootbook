@@ -2,7 +2,10 @@ const express = require("express");
 const User = require("../modules/User");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-var bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const JWT_SCRECT = "vignesh13$13";
 
 router.post(
   "/",
@@ -25,13 +28,19 @@ router.post(
       }
       const salt = await bcrypt.genSalt(10);
       const secPass = await bcrypt.hash(req.body.password, salt);
-      await User.create({
+      user = await User.create({
         name: req.body.name,
         password: secPass,
         email: req.body.email,
       });
-
-      res.json(req.body);
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const jwtData = jwt.sign(data, JWT_SCRECT);
+      console.log(jwtData);
+      res.json(user);
     } catch (error) {
       console.error(error.message);
     }
