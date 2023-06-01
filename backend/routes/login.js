@@ -7,8 +7,9 @@ const jwt = require("jsonwebtoken");
 
 const JWT_SCRECT = "vignesh13$13";
 
+// the below code is used to create a new user
 router.post(
-  "/",
+  "/signup",
   [
     body("name", "Enter a valid user name").isLength({ min: 3 }),
     body("email", "Enter a valid Email id").isEmail(),
@@ -38,11 +39,49 @@ router.post(
           id: user.id,
         },
       };
-      const jwtData = jwt.sign(data, JWT_SCRECT);
-      console.log(jwtData);
-      res.json(user);
+      const token = jwt.sign(data, JWT_SCRECT);
+      res.json({ token });
     } catch (error) {
       console.error(error.message);
+    }
+  }
+);
+
+// the below code is used for login
+router.post(
+  "/signin",
+  [
+    body("email", "Enter a valid Email id").isEmail(),
+    body("password", "Enter a valid password").exists(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { email, password } = req.body;
+    try {
+      let user = await User.findOne({ email: email });
+
+      // check wheater the user is exist or not
+      if (!user) {
+        return res.status(400).json({ error: "Inavlid email ID." });
+      }
+
+      // check wheather the password correct or not (it return true or false)
+      let pass = await bcrypt.compare(password, user.password);
+      if (!pass) {
+        return res.status(400).json({ error: "Inavlid password." });
+      }
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const token = jwt.sign(data, JWT_SCRECT);
+      res.json({ token });
+    } catch (error) {
+      console.log(error);
     }
   }
 );
