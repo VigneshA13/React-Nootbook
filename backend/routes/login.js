@@ -4,10 +4,11 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const userfetch = require("../middleware/fetchUser");
 
 const JWT_SCRECT = "vignesh13$13";
 
-// the below code is used to create a new user
+// Route : 1 => the below code is used to create a new user
 router.post(
   "/signup",
   [
@@ -47,7 +48,7 @@ router.post(
   }
 );
 
-// the below code is used for login
+//  Route : 2 => the below code is used for login
 router.post(
   "/signin",
   [
@@ -85,4 +86,18 @@ router.post(
     }
   }
 );
+
+//  Route : 3 => select all the details of the user using token
+router.post("/getuser", userfetch, async (req, res) => {
+  try {
+    let userId = req.user.id;
+    // below is the select query
+    // -password means featch all the fields except password field
+    const user = await User.findById(userId).select("-password");
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
