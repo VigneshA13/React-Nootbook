@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import NoteContext from "./NoteContext";
+import { useNavigate } from "react-router-dom";
 
 const NoteState = (props) => {
+  const navigate = useNavigate();
   const notesInitial = [
     {
       _id: "647b07e4bfdfe867f28e1590",
@@ -48,13 +50,18 @@ const NoteState = (props) => {
       __v: 0,
     };
     setNotes(notes.concat(note));
+    navigate("/");
   };
 
   //Delete a notes
-  const deleteNotes = () => {};
+  const deleteNotes = (id) => {
+    console.log(id);
+    const newNotes = notes.filter((note) => note._id !== id);
+    setNotes(newNotes);
+  };
 
   //Edit a notes
-  const editNotes = () => {};
+  const editNotes = (id, title, description, tag) => {};
 
   return (
     <NoteContext.Provider value={{ notes, addNotes, deleteNotes, editNotes }}>
