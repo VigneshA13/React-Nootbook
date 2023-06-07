@@ -3,10 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav
+      className="navbar navbar-expand-lg bg-body-tertiary "
+      data-bs-theme="dark">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          Navbar
+          Notebook
         </Link>
         <button
           className="navbar-toggler"
@@ -38,7 +40,7 @@ export default function Navbar() {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-light" type="submit">
               Search
             </button>
           </form>
