@@ -1,6 +1,6 @@
 import Navbar from "./Components/Navbar";
 import { Routes, Route, useLocation } from "react-router-dom";
-import About from "./Components/About";
+import AddNotes from "./Components/AddNotes";
 import Home from "./Components/Home";
 import NoteState from "./Context/NoteState";
 import { useEffect } from "react";
@@ -17,7 +17,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<AddNotes />} />
       </Routes>
     </NoteState>
   );
