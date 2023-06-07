@@ -1,12 +1,13 @@
 import React from "react";
+import Notes from "./Notes";
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="container">
       <h1>Add Notes</h1>
       <form className="my-3">
         <div className="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+          <label htmlFor="exampleInputEmail1">Email address</label>
           <input
             type="email"
             className="form-control"
@@ -16,7 +17,7 @@ export default function Home() {
           />
         </div>
         <div className="form-group my-3">
-          <label for="exampleInputPassword1">Password</label>
+          <label htmlFor="exampleInputPassword1">Password</label>
           <input
             type="password"
             className="form-control"
@@ -29,7 +30,9 @@ export default function Home() {
           Submit
         </button>
       </form>
-      <h3>Your Notes : </h3>
+      <Notes />
     </div>
   );
-}
+};
+
+export default Home;
