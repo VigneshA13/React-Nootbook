@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import NoteContext from "../Context/NoteContext";
+import { useNavigate } from "react-router-dom";
 
 const NoteItem = (props) => {
+  const navigate = useNavigate();
   let { i } = props;
   let { note } = props;
 
@@ -21,6 +23,9 @@ const NoteItem = (props) => {
         <div className="row">
           <button
             type="submit"
+            onClick={() => {
+              navigate("/update", { state: note });
+            }}
             className="btn btn-primary mx-4 my-3"
             style={{ width: "100px" }}>
             Edit
