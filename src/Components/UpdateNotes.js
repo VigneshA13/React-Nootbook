@@ -19,11 +19,11 @@ export default function UpdateNotes() {
   const update = (e) => {
     e.preventDefault();
     editNotes(location.state._id, note.title, note.description, note.tag);
-    navigate("/");
+    navigate("/home");
   };
 
   const cancle = (e) => {
-    navigate("/");
+    navigate("/home");
   };
 
   const onchange = (e) => {

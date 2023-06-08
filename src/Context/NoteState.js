@@ -3,6 +3,8 @@ import NoteContext from "./NoteContext";
 import { useNavigate } from "react-router-dom";
 
 const NoteState = (props) => {
+  const token = localStorage.getItem("token");
+
   const navigate = useNavigate();
   const notesInitial = [];
 
@@ -11,16 +13,16 @@ const NoteState = (props) => {
   // Get Notes
   const getNotes = async () => {
     let url = "http://localhost:5000/api/notes/notes";
+
     const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ODJiZGFkY2JiZjMzOWYxYWMwNWVkIn0sImlhdCI6MTY4NTYwNDY2NH0.HxCLbunVGGQDjuQzhS_wYXHVRwL-vw2ZUgV6hBAvobU",
+        "auth-token": token,
       },
     });
     const out = await response.json();
-    // console.log(out);
+    //console.log(out);
     setNotes(out);
   };
   //Add notes
@@ -32,8 +34,7 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ODJiZGFkY2JiZjMzOWYxYWMwNWVkIn0sImlhdCI6MTY4NTYwNDY2NH0.HxCLbunVGGQDjuQzhS_wYXHVRwL-vw2ZUgV6hBAvobU",
+        "auth-token": token,
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -51,7 +52,7 @@ const NoteState = (props) => {
       console.log("notes added");
     }
     setNotes(notes.concat(note));
-    navigate("/");
+    navigate("/home");
   };
 
   //Delete a notes
@@ -62,8 +63,7 @@ const NoteState = (props) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ODJiZGFkY2JiZjMzOWYxYWMwNWVkIn0sImlhdCI6MTY4NTYwNDY2NH0.HxCLbunVGGQDjuQzhS_wYXHVRwL-vw2ZUgV6hBAvobU",
+        "auth-token": token,
       },
     });
     if (response.ok) {
@@ -80,8 +80,7 @@ const NoteState = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ODJiZGFkY2JiZjMzOWYxYWMwNWVkIn0sImlhdCI6MTY4NTYwNDY2NH0.HxCLbunVGGQDjuQzhS_wYXHVRwL-vw2ZUgV6hBAvobU",
+        "auth-token": token,
       },
       body: JSON.stringify({ title, description, tag }),
     });
