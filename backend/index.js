@@ -1,9 +1,12 @@
 const connectToMongo = require("./db");
 const express = require("express");
 
+const cors = require("cors");
 const app = express();
 
 connectToMongo();
+
+app.use(cors());
 
 // the below line return the value in console in json formate
 app.use(express.json());
