@@ -4,6 +4,7 @@ import AddNotes from "./Components/AddNotes";
 import Home from "./Components/Home";
 import UpdateNotes from "./Components/UpdateNotes";
 import NoteState from "./Context/NoteState";
+import Login from "./Components/Login";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<AddNotes />} />
         <Route path="/update" element={<UpdateNotes />} />
       </Routes>
