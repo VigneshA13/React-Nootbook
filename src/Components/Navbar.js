@@ -4,10 +4,16 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 export default function Navbar() {
   const navigate = useNavigate();
 
-  const logout = () => {
+  const logout = (e) => {
+    e.preventDefault();
     localStorage.removeItem("token");
     navigate("/");
   };
+  const signup = (e) => {
+    e.preventDefault();
+    navigate("/signup");
+  };
+
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary "
@@ -39,11 +45,19 @@ export default function Navbar() {
               </NavLink>
             </li>
           </ul>
-          <form className="d-flex" role="search" onSubmit={logout}>
-            <button className="btn btn-outline-light" type="submit">
-              Logout
-            </button>
-          </form>
+          {localStorage.getItem("token") ? (
+            <form className="d-flex" role="search" onSubmit={logout}>
+              <button className="btn btn-outline-light" type="submit">
+                Logout
+              </button>
+            </form>
+          ) : (
+            <form className="d-flex" role="search" onSubmit={signup}>
+              <button className="btn btn-outline-light" type="submit">
+                Signup
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </nav>

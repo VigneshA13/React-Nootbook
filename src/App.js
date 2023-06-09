@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import UpdateNotes from "./Components/UpdateNotes";
 import NoteState from "./Context/NoteState";
 import Login from "./Components/Login";
+import Signup from "./Components/Signup";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<AddNotes />} />
         <Route path="/update" element={<UpdateNotes />} />
